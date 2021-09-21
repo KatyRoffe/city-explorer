@@ -30,5 +30,11 @@ City Explorer is a React application that allows a user to retrieve a map and co
 >- Feature name: Setup
 >- Estimate of time needed to complete: 40 minutes
 >- Start time: 3:00
->- Finish time: _____
->- Actual time needed to complete: _____
+>- Finish time: 3:50
+>- Actual time needed to complete: 50 minutes
+---
+>- Feature name: Locations
+>- Estimate of time needed to complete: 2 hours
+>- Start time: 4:00
+>- Finish time: 
+>- Actual time needed to complete: 
