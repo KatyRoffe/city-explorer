@@ -7,7 +7,9 @@
 City Explorer is a React application that allows a user to retrieve a map and coordinates of a location through a 3rd-party API. 
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+![WRRC Day1](./images/WRRC-day1.png)
+![WRRC Day2](./images/WRRC-day2.png)
+![WRRC Day3](./images/WRRC-day3.PNG)
 
 ## Architecture
 
@@ -17,16 +19,16 @@ City Explorer is a React application that allows a user to retrieve a map and co
 **Technologies:**  
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
-
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+9-21-2021 2:15pm - Application has a fully rendering form.
+9-22-2021 6:30pm - Application's Bootstrap componenets have been restyled and now map is rendering
+9-22-201 9:20pm - LocalHost server connected
 
 ## Credit and Collaborations
-**Peer Collaboratoions:** Jovincent del Mundo
+**Peer Programming:** Jovincent del Mundo, Bryce Pfingston, Brian Kasprzyk<br>
+**Collabortions:** Brian Kasprzyk, Cameron Walden, George Mead
 
 ## Time Estimates
 
->- ### Lab 06
 >- Feature name: Setup
 >- Estimate of time needed to complete: 40 minutes
 >- Start time: 3:00
@@ -36,5 +38,29 @@ City Explorer is a React application that allows a user to retrieve a map and co
 >- Feature name: Locations
 >- Estimate of time needed to complete: 2 hours
 >- Start time: 4:00
->- Finish time: 
->- Actual time needed to complete: 
+>- Finish time: 6:00
+>- Actual time needed to complete: 2 Hours
+---
+>- Feature name: Locations & Map
+>- Estimate of time needed to complete: 2 hours
+>- Start time: 4:00
+>- Finish time: 6:00
+>- Actual time needed to complete: 2 Hours
+
+>- Feature name: Weather Server (placeholder)
+>- Estimate of time needed to complete: 4 hours
+>- Start time: 6:30
+>- Finish time: 9:00
+>- Actual time needed to complete: 2.5 hours
+
+>- Feature name: Weather Server (live)
+>- Estimate of time needed to complete: 4
+>- Start time: 10:30
+>- Finish time: -
+>- Actual time needed to complete: in process
+
+>- Feature name: Styling
+>- Estimate of time needed to complete: Ongoing
+>- Start time: -
+>- Finish time: -
+>- Actual time needed to complete: in process
