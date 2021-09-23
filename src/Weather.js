@@ -2,7 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 
-export default class Weather extends Component {
+export default class Weather extends React.Component {
   render () {
     return (
       <Container>

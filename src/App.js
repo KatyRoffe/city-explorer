@@ -9,6 +9,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 
+import Weather from './Weather.js';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,7 @@ class App extends React.Component {
       cityQuery: '',
       location: {},
       error: false,
+      forecastInfo: [],
     }
   }
 
@@ -46,7 +49,6 @@ class App extends React.Component {
   
   try {
     const weatherData = await axios.get(`${weatherAPI}`);
-    //console.log(weatherData)
     const forecastInfo = weatherData.data;
     this.setState({
       forecastInfo: forecastInfo,
@@ -63,7 +65,7 @@ class App extends React.Component {
       <Container>
 
       <Form>
-          <Form.Label>Where would you like to go?</Form.Label>
+          <Form.Label><h1>Where would you like to go?</h1></Form.Label>
           <Form.Control onChange={this.handleChange} value={this.state.cityQuery}/>
           <Button variant="primary" onClick={this.getLocation}>Explore!</Button>
       </Form>
@@ -75,6 +77,7 @@ class App extends React.Component {
             <Card.Title>{this.state.location.display_name}</Card.Title>
             <Card.Text>Latitude:{this.state.location.lat}</Card.Text>
             <Card.Text>Longitude:{this.state.location.lon}</Card.Text>
+            <Weather forecastInfo={this.state.forecastInfo} />
           </Card.Body>
         </Card>
       }
@@ -83,7 +86,6 @@ class App extends React.Component {
       )
     }
   }
-
 
 export default App;
 
