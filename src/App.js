@@ -9,6 +9,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 
+import Weather from './Weather.js';
+import Movies from './Movies.js';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +19,8 @@ class App extends React.Component {
       cityQuery: '',
       location: {},
       error: false,
+      forecastInfo: [],
+      movieInfo: [],
     }
   }
 
@@ -35,21 +40,25 @@ class App extends React.Component {
       location: response.data[0], 
       error: false,
     });
+    this.getWeather(); 
+    this.getMovies();
 
   } catch (error) {
     this.setState({
       error: true,
     });
   }
+};
   
-  const weatherAPI = `http://localhost:3001/weather?searchQuery=${this.state.cityQuery}`;
-  
+  getWeather = async () => {
+    const weatherAPI = `http://localhost:3001/weather?lat=${this.state.location.lat}&lon=${this.state.location.lon}`;
+    console.log(weatherAPI);
   try {
-    const weatherData = await axios.get(`${weatherAPI}`);
-    //console.log(weatherData)
-    const forecastInfo = weatherData.data;
+    const weatherData = await axios.get(weatherAPI);
+    console.log(weatherData);
+    // const forecastInfo = weatherData.data;
     this.setState({
-      forecastInfo: forecastInfo,
+      forecastInfo: weatherData.data,
     });
   } catch (error){
     this.setState({
@@ -58,12 +67,32 @@ class App extends React.Component {
   }
 }
 
+  getMovies = async () => {
+    const movieAPI = `http://localhost:3001/movies?searchQuery=${this.state.cityQuery}`
+    console.log(movieAPI);
+
+    try {
+      const movieData = await axios.get(movieAPI);
+      console.log(movieData);
+      // const movieInfo = movieData.data;
+      this.setState({
+        movieInfo: movieData.data,
+      })
+    } catch (error) {
+      this.setState({
+        error: true,
+      })
+    }
+
+    }
+  
+
   render() {
     return (
       <Container>
 
       <Form>
-          <Form.Label>Where would you like to go?</Form.Label>
+          <Form.Label><h1>Where would you like to go?</h1></Form.Label>
           <Form.Control onChange={this.handleChange} value={this.state.cityQuery}/>
           <Button variant="primary" onClick={this.getLocation}>Explore!</Button>
       </Form>
@@ -75,6 +104,8 @@ class App extends React.Component {
             <Card.Title>{this.state.location.display_name}</Card.Title>
             <Card.Text>Latitude:{this.state.location.lat}</Card.Text>
             <Card.Text>Longitude:{this.state.location.lon}</Card.Text>
+            <Weather forecastInfo={this.state.forecastInfo} />
+            <Movies movieInfo={this.state.movieInfo} />
           </Card.Body>
         </Card>
       }
