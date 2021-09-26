@@ -10,6 +10,7 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 
 import Weather from './Weather.js';
+import Movies from './Movies.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class App extends React.Component {
       location: {},
       error: false,
       forecastInfo: [],
+      movieInfo: [],
     }
   }
 
@@ -38,20 +40,25 @@ class App extends React.Component {
       location: response.data[0], 
       error: false,
     });
+    this.getWeather(); 
+    this.getMovies();
 
   } catch (error) {
     this.setState({
       error: true,
     });
   }
+};
   
-  const weatherAPI = `http://localhost:3001/weather?searchQuery=${this.state.cityQuery}`;
-  
+  getWeather = async () => {
+    const weatherAPI = `http://localhost:3001/weather?lat=${this.state.location.lat}&lon=${this.state.location.lon}`;
+    console.log(weatherAPI);
   try {
-    const weatherData = await axios.get(`${weatherAPI}`);
-    const forecastInfo = weatherData.data;
+    const weatherData = await axios.get(weatherAPI);
+    console.log(weatherData);
+    // const forecastInfo = weatherData.data;
     this.setState({
-      forecastInfo: forecastInfo,
+      forecastInfo: weatherData.data,
     });
   } catch (error){
     this.setState({
@@ -59,6 +66,26 @@ class App extends React.Component {
     });
   }
 }
+
+  getMovies = async () => {
+    const movieAPI = `http://localhost:3001/movies?searchQuery=${this.state.cityQuery}`
+    console.log(movieAPI);
+
+    try {
+      const movieData = await axios.get(movieAPI);
+      console.log(movieData);
+      // const movieInfo = movieData.data;
+      this.setState({
+        movieInfo: movieData.data,
+      })
+    } catch (error) {
+      this.setState({
+        error: true,
+      })
+    }
+
+    }
+  
 
   render() {
     return (
@@ -78,6 +105,7 @@ class App extends React.Component {
             <Card.Text>Latitude:{this.state.location.lat}</Card.Text>
             <Card.Text>Longitude:{this.state.location.lon}</Card.Text>
             <Weather forecastInfo={this.state.forecastInfo} />
+            <Movies movieInfo={this.state.movieInfo} />
           </Card.Body>
         </Card>
       }
@@ -86,6 +114,7 @@ class App extends React.Component {
       )
     }
   }
+
 
 export default App;
 
